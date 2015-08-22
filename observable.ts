@@ -2,7 +2,7 @@ module observable {
 
   export interface IGenerator {
     /**
-     *
+     * Trigger an event for listeners to consume.
      * @param value
      */
     next?(value?:any):any;
@@ -16,19 +16,23 @@ module observable {
     unsubscribe():void;
   }
 
+  /**
+   * Implementation of an Observable object that conforms to the observable specification.
+   */
   export class Observable implements IObservable {
     subscribe(generator:observable.IGenerator):observable.ISubscription {
-      if(!generator){
+      if (!generator) {
         // TODO: The spec is unclear about what to do if the required argument is missing.
         return null;
       }
       this._listeners.push(generator);
       return {
-        unsubscribe: this._unsubscribe.bind(this,generator),
+        unsubscribe: this._unsubscribe.bind(this, generator),
       }
     }
 
     private _listeners:IGenerator[] = [];
+
     private _unsubscribe(generator:observable.IGenerator):void {
       for (var i:number = 0; i < this._listeners.length; i++) {
         if (this._listeners[i] === generator) {

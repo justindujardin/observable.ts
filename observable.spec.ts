@@ -25,16 +25,17 @@ describe('observable', () => {
     });
   });
   describe('ISubscription', () => {
-    it('should remove a listener from the observable when unsubscribe is called', () => {
-      var o:any = new observable.Observable();
-      var generator:observable.IGenerator = {};
-      o.subscribe({});
-      var s:observable.ISubscription = o.subscribe(generator);
-      expect(o._listeners.length).toBe(2);
-      expect(s.unsubscribe).toBeDefined();
-      s.unsubscribe();
-      expect(o._listeners.length).toBe(1);
+    describe('unsubscribe', () => {
+      it('should remove a listener from the observable when unsubscribe is called', () => {
+        var o:any = new observable.Observable();
+        var generator:observable.IGenerator = {};
+        o.subscribe({});
+        var s:observable.ISubscription = o.subscribe(generator);
+        expect(o._listeners.length).toBe(2);
+        expect(s.unsubscribe).toBeDefined();
+        s.unsubscribe();
+        expect(o._listeners.length).toBe(1);
+      });
     });
-
   });
 });
