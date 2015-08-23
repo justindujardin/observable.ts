@@ -1,0 +1,41 @@
+{
+  "name": "observable.ts",
+  "version": "0.0.0",
+  "description": "Observable Implementation for Typescript",
+  "main": "lib/observable.js",
+  "dependencies": {
+    "karma": "~0.13.9",
+    "karma-coverage": "~0.5.0",
+    "karma-jasmine": "~0.2.2"
+  },
+  "devDependencies": {
+    "grunt-npm": "0.0.2",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-bump": "~0.3.2",
+    "grunt": "~0.4.5",
+    "grunt-contrib-uglify": "~0.9.1",
+    "grunt-conventional-changelog": "~4.1.0",
+    "grunt-karma-coveralls": "~2.5.4"
+  },
+  "scripts": {
+    "test": "karma start tools/karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/justindujardin/observable.ts.git"
+  },
+  "keywords": [
+    "observable",
+    "spec",
+    "typescript",
+    "observer",
+    "subscriber",
+    "events"
+  ],
+  "author": "Justin DuJardin <justin@dujardinconsulting.com>",
+  "license": "CC0 1.0 Universal",
+  "bugs": {
+    "url": "https://github.com/justindujardin/observable.ts/issues"
+  },
+  "homepage": "https://github.com/justindujardin/observable.ts"
+}
