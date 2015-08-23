@@ -104,6 +104,25 @@ describe('obs', () => {
       expect(called).toBe(operation !== 'throw');
     }
 
+    function expectNoThrowOnMissing(operation:string) {
+      var o:any = new obs.Observable();
+      var count = 0;
+      if(operation !== 'throw'){
+        o.subscribe({
+          throw: (e:any) => count++
+        });
+        o[operation]();
+        expect(count).toBe(0);
+      }
+      else {
+        o.subscribe({});
+        o.subscribe({
+          throw: (e:any) => expect(e).toBe('foo')
+        });
+        o[operation]('foo');
+      }
+    }
+
     describe('next', () => {
       it('must never be called after the unsubscribe method of subscription has been called', () => {
         expectNotCalledAfterUnsubscribe('next');
@@ -113,6 +132,9 @@ describe('obs', () => {
       });
       it('errors thrown during execution are reported to a generator with throw method defined', () => {
         expectThrowOnCallbackThrow('next');
+      });
+      it('should not throw an error if a generator does not define the method', () => {
+        expectNoThrowOnMissing('next');
       });
     });
     describe('throw', () => {
@@ -125,6 +147,9 @@ describe('obs', () => {
       it('errors thrown during execution are reported to a generator with throw method defined', () => {
         expectThrowOnCallbackThrow('throw');
       });
+      it('should not throw an error if a generator does not define the method', () => {
+        expectNoThrowOnMissing('throw');
+      });
     });
     describe('return', () => {
       it('must never be called after the unsubscribe method of subscription has been called', () => {
@@ -135,6 +160,9 @@ describe('obs', () => {
       });
       it('errors thrown during execution are reported to a generator with throw method defined', () => {
         expectThrowOnCallbackThrow('return');
+      });
+      it('should not throw an error if a generator does not define the method', () => {
+        expectNoThrowOnMissing('return');
       });
     });
   });

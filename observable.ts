@@ -101,6 +101,9 @@ module obs {
       for (var i:number = 0; i < this._listeners.length; i++) {
         try {
           var generator:any = this._listeners[i];
+          if(!generator || !generator[operation]){
+            continue;
+          }
           var result:any = generator[operation](value);
           if (result && result.done === true) {
             completed.push(this._listeners[i]);
