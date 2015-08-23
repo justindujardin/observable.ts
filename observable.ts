@@ -5,8 +5,7 @@ module obs {
    * @returns {boolean} true if the type is an object.
    */
   export function isObject(obj:any):boolean {
-    var type = typeof obj;
-    return type === 'object' && !!obj && toString.call(obj) !== '[object Array]';
+    return typeof obj === 'object' && !!obj && toString.call(obj) !== '[object Array]';
   }
 
   /**
@@ -101,7 +100,7 @@ module obs {
       for (var i:number = 0; i < this._listeners.length; i++) {
         try {
           var generator:any = this._listeners[i];
-          if(!generator || !generator[operation]){
+          if (!generator || !generator[operation]) {
             continue;
           }
           var result:any = generator[operation](value);
