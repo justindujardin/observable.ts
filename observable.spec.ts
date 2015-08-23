@@ -107,7 +107,7 @@ describe('obs', () => {
     function expectNoThrowOnMissing(operation:string) {
       var o:any = new obs.Observable();
       var count = 0;
-      if(operation !== 'throw'){
+      if (operation !== 'throw') {
         o.subscribe({
           throw: (e:any) => count++
         });
@@ -166,4 +166,70 @@ describe('obs', () => {
       });
     });
   });
+});
+
+// --- Examples
+
+describe('examples', () => {
+
+  it('should work for game trigger objects with enter/leave observables', (done) => {
+    // Construct a kind of rube goldberg test that follows a player into
+    // and back out of a pseudo-game-trigger object by listening
+    // to the exposed enter/leave observables of the trigger.
+
+    var player:string = 'this would really be a game object of some type';
+
+    // 1) A trigger-like object that the game will call doEnter/doLeave on.
+    var trigger:any = {
+      enter: new obs.Observable(),
+      leave: new obs.Observable(),
+      doEnter: (obj:string) => trigger.enter.next(obj),
+      doLeave: (obj:string) => trigger.leave.next(obj),
+      destroy: () => {
+
+        // 8) Cleanup observables to let them know the object will no longer
+        //    emit any events, and complete the test.
+        trigger.enter.return();
+        trigger.leave.return();
+        expect(returnedEmitters).toBe(2);
+        done();
+      }
+    };
+
+    // 2) Track the number of calls to the `return` method on our
+    //    observable generators.  Expect that it will be 2 by the
+    //    time we're done, one each for enter/leave observables.
+    var returnedEmitters:number = 0;
+
+    // 3) Some other piece of code (maybe the UI) wants to know when
+    //    a player enters this particular trigger.  So it subscribe's
+    //    to the `enter` observable.
+    trigger.enter.subscribe({
+      next: (value:string) => {
+
+        // 6) Expect our test player and make it leave.
+        expect(value).toBe(player);
+        trigger.doLeave(player);
+      },
+      return: () => returnedEmitters++
+    });
+
+    // 4) Yet another piece of code wants to know about when the player
+    //    leaves the trigger.  It subscribes to the `leave` observable.
+    trigger.leave.subscribe({
+      next: (value:string) => {
+
+        // 7) Okay, the player leave event works, now destroy the
+        //    whole thing and make sure that the `return` events
+        //    were generated.
+        expect(value).toBe(player);
+        trigger.destroy();
+      },
+      return: () => returnedEmitters++
+    });
+
+    // 5) Set it in motion by entering the player into our trigger.
+    trigger.doEnter(player);
+  });
+
 });
