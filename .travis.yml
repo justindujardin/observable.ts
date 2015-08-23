@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "0.10"
+
+before_install:
+  - npm install -g typescript karma-cli
+
+before_script:
+  - npm install
+  - tsc
+
+script: karma start --single-run
+
+after_success:
+  - grunt coveralls
