@@ -14,7 +14,7 @@ A reference implementation of the [observable spec](https://github.com/jhusain/o
   <br />
   To the extent possible under law,
   <a rel="dct:publisher"
-     href="https://github.com/justindujardin/observable.ts">
+     href="https://www.justindujardin.com">
     <span property="dct:title">Justin DuJardin</span></a>
   has waived all copyright and related or neighboring rights to
   <span property="dct:title">observable.ts</span>.
