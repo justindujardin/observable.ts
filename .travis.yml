@@ -11,5 +11,4 @@ before_script:
 
 script: karma start --single-run
 
-after_success:
-  - grunt coveralls
+after_success: grunt coveralls
