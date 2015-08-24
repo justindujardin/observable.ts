@@ -57,7 +57,7 @@ trigger.enter.subscribe({
   next: (value:IPlayer) => {
     var damage = 50;
     value.health -= damage;
-    console.log(player.name + ' entered the trigger and took ' + damage + ' damage!');
+    console.log(value.name + ' entered the trigger and took ' + damage + ' damage!');
   }
 });
 trigger.leave.subscribe({
