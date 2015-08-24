@@ -43,7 +43,7 @@ module.exports = function (grunt) {
           'lib/observable.js',
           'lib/observable.js.map',
           'lib/observable.min.js',
-          'lib/observable.min.map'
+          'lib/observable.min.js.map'
         ]
       }
     },
