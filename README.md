@@ -3,8 +3,66 @@ observable.ts [![Build Status](https://travis-ci.org/justindujardin/observable.t
 
 A reference implementation of the [observable spec](https://github.com/jhusain/observable-spec) in Typescript.
 
+### Example
 
----
+Define a game trigger object with `enter` and `leave` observables.
+
+```typescript
+
+interface ITrigger {
+  enter: obs.Observable;
+  leave: obs.Observable;
+  doEnter(obj:IPlayer):void;
+  doLeave(obj:IPlayer):void;
+  destroy():void;
+}
+interface IPlayer {
+  name: string;
+  health: number;
+}
+
+var player:IPlayer = {
+  name: 'MorTon',
+  health: 100
+};
+var trigger:ITrigger = {
+  enter: new obs.Observable(),
+  leave: new obs.Observable(),
+  doEnter: (obj:IPlayer) => trigger.enter.next(obj),
+  doLeave: (obj:IPlayer) => trigger.leave.next(obj),
+  destroy: () => {
+    trigger.enter.return();
+    trigger.leave.return();
+  }
+};
+
+trigger.enter.subscribe({
+  next: (value:IPlayer) => {
+    var damage = 50;
+    value.health -= damage;
+    console.log(player.name + ' entered the trigger and took ' + damage + ' damage!');
+  }
+});
+trigger.leave.subscribe({
+  next: (value:IPlayer) => {
+    console.log(value.name + ' exited the trigger with ' + value.health + ' health remaining.');
+  }
+});
+
+trigger.doEnter(player);
+trigger.doLeave(player);
+trigger.destroy();
+
+```
+
+Outputs:
+```
+MorTon entered the trigger and took 50 damage!
+MorTon exited the trigger with 50 health remaining.
+```
+
+
+### License
 
 <p xmlns:dct="http://purl.org/dc/terms/" xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
   <a rel="license"
