@@ -24,7 +24,7 @@ module.exports = function (config) {
       'karma-jasmine',
       'karma-coverage'
     ],
-    preprocessors: (process.env.TRAVIS || coverageDebug) ? {"lib/*.js": "coverage"} : {},
+    preprocessors: (process.env.TRAVIS || coverageDebug) ? {"lib/observable.js": "coverage"} : {},
     coverageReporter: {
       type: "lcov",
       dir: ".coverage/"
