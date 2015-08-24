@@ -1,4 +1,4 @@
-observable.ts
+observable.ts [![Build Status](https://travis-ci.org/justindujardin/observable.ts.svg?branch=master)](https://travis-ci.org/justindujardin/observable.ts) [![Coverage Status](https://img.shields.io/coveralls/justindujardin/observable.ts.svg)](https://coveralls.io/r/justindujardin/observable.ts?branch=master)
 -------------
 
 A reference implementation of the [observable spec](https://github.com/jhusain/observable-spec) in Typescript.
