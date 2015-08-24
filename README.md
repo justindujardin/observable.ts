@@ -3,11 +3,28 @@ observable.ts [![Build Status](https://travis-ci.org/justindujardin/observable.t
 
 A reference implementation of the [observable spec](https://github.com/jhusain/observable-spec) in Typescript.
 
+### Installation
+
+Install from bower
+
+`bower install observable.ts`
+
+Then add a script link to your page 
+
+```html
+<head>
+  ...
+  <script src="bower_components/observable.ts/lib/observable.min.js"></script>
+</head>
+```
+
+
 ### Example
 
 Define a game trigger object with `enter` and `leave` observables.
 
 ```typescript
+/// <reference path="bower_components/observable.ts/lib/observable.d.ts"/>
 
 interface ITrigger {
   enter: obs.Observable;
@@ -63,7 +80,7 @@ MorTon exited the trigger with 50 health remaining.
 
 
 ### License
-
+---
 <p xmlns:dct="http://purl.org/dc/terms/" xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
   <a rel="license"
      href="https://creativecommons.org/publicdomain/zero/1.0/">
