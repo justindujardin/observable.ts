@@ -81,7 +81,7 @@ MorTon exited the trigger with 50 health remaining.
 
 The observable.ts test suite is run against a number of browsers to ensure it's compatible.
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/justindujardin.svg)](https://saucelabs.com/u/justindujardin)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/observable.svg)](https://saucelabs.com/u/observable)
 
 ### License
 ---
