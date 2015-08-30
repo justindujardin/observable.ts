@@ -13,7 +13,6 @@ before_script:
 
 script:
  - karma start karma.sauce.conf.js
- - karma start karma.conf.js --single-run
 
 after_success:
   - grunt coveralls

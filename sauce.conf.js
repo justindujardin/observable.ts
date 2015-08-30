@@ -77,7 +77,7 @@ module.exports = function (config) {
 
     browsers: Object.keys(customLaunchers),
 
-    reporters: ['dots', 'saucelabs'],
+    reporters: ['dots', 'saucelabs', 'coverage'],
 
     singleRun: true,
 
