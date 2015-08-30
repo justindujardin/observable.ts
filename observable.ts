@@ -5,7 +5,7 @@ module obs {
    * @returns {boolean} true if the type is an object.
    */
   export function isObject(obj:any):boolean {
-    return typeof obj === 'object' && !!obj && toString.call(obj) !== '[object Array]';
+    return typeof obj === 'object' && !!obj && Object.prototype.toString.call(obj) !== '[object Array]';
   }
 
   /**
