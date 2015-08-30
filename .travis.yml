@@ -12,7 +12,7 @@ before_script:
   - tsc
 
 script:
- - karma start karma-sauce.conf.js
+ - karma start karma.sauce.conf.js
 
 after_success:
   - grunt coveralls

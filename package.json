@@ -16,7 +16,8 @@
     "karma": "~0.13.9",
     "karma-jasmine": "~0.2.2",
     "istanbul": "bryanforbes/istanbul#source-map-resolve",
-    "karma-coverage": "gotwarlost/karma-coverage.git#source-lookup"
+    "karma-coverage": "gotwarlost/karma-coverage.git#source-lookup",
+    "karma-sauce-launcher": "~0.2.14"
   },
   "scripts": {
     "test": "karma start tools/karma.conf.js"

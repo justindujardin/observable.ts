@@ -1,4 +1,4 @@
-// Sauce configuration
+// Sauce configuration, based on the one in zone.js: https://github.com/angular/zone.js/blob/master/sauce.conf.js
 
 module.exports = function (config) {
 
@@ -89,11 +89,5 @@ module.exports = function (config) {
   if (process.env.TRAVIS) {
     config.sauceLabs.build = 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')';
     config.sauceLabs.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
-
-    process.env.SAUCE_ACCESS_KEY = process.env.SAUCE_ACCESS_KEY.split('').reverse().join('');
-
-    // TODO(vojta): remove once SauceLabs supports websockets.
-    // This speeds up the capturing a bit, as browsers don't even try to use websocket.
-    config.transports = ['xhr-polling'];
   }
 };
