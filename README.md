@@ -77,7 +77,11 @@ Outputs:
 MorTon entered the trigger and took 50 damage!
 MorTon exited the trigger with 50 health remaining.
 ```
+### Browser Support
 
+The observable.ts test suite is run against a number of browsers to ensure it's compatible.
+
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/justindujardin.svg)](https://saucelabs.com/u/justindujardin)
 
 ### License
 ---
